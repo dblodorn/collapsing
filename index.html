@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <title>COLLAPSING</title>
+  <meta name="description" content="Collapsing hover states by DerpyVision">
+  <meta property="og:image" content="collapsing.png" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <style type="text/css" media="screen">
+    .smooth, .rectangle-container {
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      -ms-transition: all 0.5s ease-in-out;
+      -o-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .smooth-slow, .rectangle-container i {
+      -webkit-transition: all 2s ease-in-out;
+      -moz-transition: all 2s ease-in-out;
+      -ms-transition: all 2s ease-in-out;
+      -o-transition: all 2s ease-in-out;
+      transition: all 2s ease-in-out;
+    }
+
+    body {
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      background: black;
+    }
+    body * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      outline: 0;
+    }
+
+    #logo {
+      z-index: 9999;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .rectangle-container {
+      width: 10vw;
+      height: 100%;
+      display: inline-block;
+      float: left;
+      cursor: pointer;
+    }
+    .rectangle-container i {
+      display: inline-block;
+      float: left;
+      width: 5%;
+      z-index: 9000;
+    }
+    .rectangle-container i:nth-child(20) {
+      height: 200%;
+      margin-top: 0;
+      background-color: #ff28ff;
+    }
+    .rectangle-container i:nth-child(19) {
+      height: 190%;
+      margin-top: 0;
+      background-color: #ff27ff;
+    }
+    .rectangle-container i:nth-child(18) {
+      height: 180%;
+      margin-top: 0;
+      background-color: #ff26ff;
+    }
+    .rectangle-container i:nth-child(17) {
+      height: 170%;
+      margin-top: 0;
+      background-color: #ff25ff;
+    }
+    .rectangle-container i:nth-child(16) {
+      height: 160%;
+      margin-top: 0;
+      background-color: #f024ff;
+    }
+    .rectangle-container i:nth-child(15) {
+      height: 150%;
+      margin-top: 0;
+      background-color: #e123ff;
+    }
+    .rectangle-container i:nth-child(14) {
+      height: 140%;
+      margin-top: 0;
+      background-color: #d222ff;
+    }
+    .rectangle-container i:nth-child(13) {
+      height: 130%;
+      margin-top: 0;
+      background-color: #c321ff;
+    }
+    .rectangle-container i:nth-child(12) {
+      height: 120%;
+      margin-top: 0;
+      background-color: #b420ff;
+    }
+    .rectangle-container i:nth-child(11) {
+      height: 110%;
+      margin-top: 0;
+      background-color: #a51fff;
+    }
+    .rectangle-container i:nth-child(10) {
+      height: 100%;
+      margin-top: 0;
+      background-color: #961eff;
+    }
+    .rectangle-container i:nth-child(9) {
+      height: 90%;
+      margin-top: 0;
+      background-color: #871dff;
+    }
+    .rectangle-container i:nth-child(8) {
+      height: 80%;
+      margin-top: 0;
+      background-color: #781cff;
+    }
+    .rectangle-container i:nth-child(7) {
+      height: 70%;
+      margin-top: 0;
+      background-color: #691bf5;
+    }
+    .rectangle-container i:nth-child(6) {
+      height: 60%;
+      margin-top: 0;
+      background-color: #5a1ad2;
+    }
+    .rectangle-container i:nth-child(5) {
+      height: 50%;
+      margin-top: 0;
+      background-color: #4b19af;
+    }
+    .rectangle-container i:nth-child(4) {
+      height: 40%;
+      margin-top: 0;
+      background-color: #3c188c;
+    }
+    .rectangle-container i:nth-child(3) {
+      height: 30%;
+      margin-top: 0;
+      background-color: #2d1769;
+    }
+    .rectangle-container i:nth-child(2) {
+      height: 20%;
+      margin-top: 0;
+      background-color: #1e1646;
+    }
+    .rectangle-container i:nth-child(1) {
+      height: 10%;
+      margin-top: 0;
+      background-color: #0f1523;
+    }
+    .rectangle-container:hover {
+      height: 50%;
+    }
+    .rectangle-container:hover i:nth-child(20) {
+      height: 40%;
+      margin-top: 1700%;
+      background-color: #ff78ff;
+    }
+    .rectangle-container:hover i:nth-child(19) {
+      height: 38%;
+      margin-top: 1615%;
+      background-color: #ff77ff;
+    }
+    .rectangle-container:hover i:nth-child(18) {
+      height: 36%;
+      margin-top: 1530%;
+      background-color: #ff76ff;
+    }
+    .rectangle-container:hover i:nth-child(17) {
+      height: 34%;
+      margin-top: 1445%;
+      background-color: #ff75ff;
+    }
+    .rectangle-container:hover i:nth-child(16) {
+      height: 32%;
+      margin-top: 1360%;
+      background-color: #ff74ff;
+    }
+    .rectangle-container:hover i:nth-child(15) {
+      height: 30%;
+      margin-top: 1275%;
+      background-color: #ff73ff;
+    }
+    .rectangle-container:hover i:nth-child(14) {
+      height: 28%;
+      margin-top: 1190%;
+      background-color: #ff72ff;
+    }
+    .rectangle-container:hover i:nth-child(13) {
+      height: 26%;
+      margin-top: 1105%;
+      background-color: #ff71ff;
+    }
+    .rectangle-container:hover i:nth-child(12) {
+      height: 24%;
+      margin-top: 1020%;
+      background-color: #ff70ff;
+    }
+    .rectangle-container:hover i:nth-child(11) {
+      height: 22%;
+      margin-top: 935%;
+      background-color: #ff6fff;
+    }
+    .rectangle-container:hover i:nth-child(10) {
+      height: 20%;
+      margin-top: 850%;
+      background-color: #ff6eff;
+    }
+    .rectangle-container:hover i:nth-child(9) {
+      height: 18%;
+      margin-top: 765%;
+      background-color: #ff6dff;
+    }
+    .rectangle-container:hover i:nth-child(8) {
+      height: 16%;
+      margin-top: 680%;
+      background-color: #ff6cff;
+    }
+    .rectangle-container:hover i:nth-child(7) {
+      height: 14%;
+      margin-top: 595%;
+      background-color: #ff6bff;
+    }
+    .rectangle-container:hover i:nth-child(6) {
+      height: 12%;
+      margin-top: 510%;
+      background-color: #ff6aff;
+    }
+    .rectangle-container:hover i:nth-child(5) {
+      height: 10%;
+      margin-top: 425%;
+      background-color: #ff69ff;
+    }
+    .rectangle-container:hover i:nth-child(4) {
+      height: 8%;
+      margin-top: 340%;
+      background-color: #ff68ff;
+    }
+    .rectangle-container:hover i:nth-child(3) {
+      height: 6%;
+      margin-top: 255%;
+      background-color: #d267ff;
+    }
+    .rectangle-container:hover i:nth-child(2) {
+      height: 4%;
+      margin-top: 170%;
+      background-color: #8c66b4;
+    }
+    .rectangle-container:hover i:nth-child(1) {
+      height: 2%;
+      margin-top: 85%;
+      background-color: #46655a;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <script>
+    const creator = new URLSearchParams(window.location.search).get('creator')
+    const viewer = new URLSearchParams(window.location.search).get('viewer')
+    console.log(`Collapsing: Created by: ${creator} / Currently view by: ${viewer}`)
+  </script>
+</body>
+</html>
