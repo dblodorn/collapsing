@@ -8,6 +8,7 @@
   <meta name="description" content="Collapsing hover states by DerpyVision">
   <meta property="og:image" content="collapsing.png" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <!--BACKGROUND-->
   <style type="text/css" media="screen">
     .smooth, .rectangle-container {
       -webkit-transition: all 0.5s ease-in-out;
@@ -16,7 +17,6 @@
       -o-transition: all 0.5s ease-in-out;
       transition: all 0.5s ease-in-out;
     }
-
     .smooth-slow, .rectangle-container i {
       -webkit-transition: all 2s ease-in-out;
       -moz-transition: all 2s ease-in-out;
@@ -24,7 +24,6 @@
       -o-transition: all 2s ease-in-out;
       transition: all 2s ease-in-out;
     }
-
     body {
       overflow: hidden;
       height: 100vh;
@@ -32,6 +31,7 @@
       margin: 0;
       padding: 0;
       background: black;
+      perspective: 1000px;
     }
     body * {
       -webkit-box-sizing: border-box;
@@ -39,14 +39,6 @@
       box-sizing: border-box;
       outline: 0;
     }
-
-    #logo {
-      z-index: 9999;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
     .rectangle-container {
       width: 10vw;
       height: 100%;
@@ -263,10 +255,141 @@
       margin-top: 85%;
       background-color: #46655a;
     }
+  </style>
+  <!--UI-->
+  <style>
+    :root {
+      --header-color: #f59994;
+      --footer-color: #405416;
+      --text-color: #fff59e;
+    }
+    main,
+    aside {
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      right: 0;
+      z-index: 0;
+      overflow: hidden;
+      position: fixed;
+    }
+    main {
+      z-index: 50;
+    }
+    footer,
+    header {
+      width: 50vw;
+      height: 5vh;
+      position: fixed;
+      z-index: 100;
+    }
+    header {
+      top: 0;
+      right: 0;
+      background-color: var(--header-color);
+    }
+    footer {
+      left: 0;
+      bottom: 0;
+      background-color: var(--footer-color);
+      filter: drop-shadow(0 0 0.75rem crimson);
+      z-index: 1000;
+    }
+    footer::before {
+      content: '';
+      left: 0;
+      width: 62vw;
+      z-index: 20;
+      position: fixed;
+      height: 12vh;
+      background: #5a1ad2;
+      filter: blur(10px);
+      border-radius: 20px;
+      opacity: 90%;
+    }
+    footer::after {
+      content: '';
+      position: fixed;
+      bottom: 5px;
+      left: 7px;
+      width: 62vw;
+      transform: skew(20deg) translate3d(-10vw, 10px, 10px) rotate(12deg);
+      background: white;
+      z-index: 20;
+      height: 12vh;
+      filter: blur(20px);
+      perspective: none;
+    }
+    :root {
+      --ball-width: 35vh;
+      --small-ball: calc(var(--ball-width) * .95);
+    }
 
+    .ball {
+      width: var(--small-ball);
+      height: var(--small-ball);
+      border-radius: 100vh;
+      background-color: var(--text-color);
+      filter: drop-shadow(0 0 0.75rem white);
+      z-index: 120;
+      transform: translateX(10vw) translateY(-5vh);
+    }
+    article {
+      width: var(--ball-width);
+      height: var(--ball-width);
+      border-radius: 100vh;
+      background-color: var(--text-color);
+      z-index: 100;
+      opacity: .9;
+      filter: blur(4px);
+      mix-blend-mode: difference;
+      transform: translateX(20vw);
+    }
+    @keyframes skewer {
+      from {
+        transform: scaleY(1.2) skew(-565deg, var(--degreeStart)) translateX(-4vw);
+        opacity: 0;
+      }
+      to {
+        transform: scaleY(1.2) skew(565deg, var(--degreeEnd)) translateX(-4vw);
+        opacity: 1;
+      }
+    }
+    article::before {
+      --degreeStart: .5;
+      --degreeEnd: 50;
+      animation: skewer 5s alternate infinite;
+      content: '';
+      border-radius: 0 100vh 100vh 50vw;
+      background: pink;
+      z-index: 10;
+      opacity: .9;
+      filter: blur(4px);
+      mix-blend-mode: difference;
+    }
+    article,
+    article::before,
+    article::after {
+      width: var(--ball-width);
+      height: var(--ball-width);
+    }
+    article,
+    article::before,
+    article::after,
+    .ball {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
   </style>
 </head>
 <body>
+  <header></header>
+  <div class="ball"></div>
+  <article></article>
   <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
   </div>
   <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
@@ -287,6 +410,7 @@
   </div>
   <div class="rectangle-container"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
   </div>
+  <footer></footer>
   <script>
     const creator = new URLSearchParams(window.location.search).get('creator')
     const viewer = new URLSearchParams(window.location.search).get('viewer')
